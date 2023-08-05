@@ -23,15 +23,13 @@
 # Merge Files
 *.bak
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
 
 #Gradle temporary files
 target/
 .mvn/
 .gradle
 **/build/
-!src/**/build/
+!../src/**/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
