@@ -1,9 +1,9 @@
 package com.domain.sub
 
-import com.domain.sub.exceptions.UnsupportedMathOperationException
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.lang.RuntimeException
 
 @RestController
 class OperationController {
@@ -12,10 +12,13 @@ class OperationController {
             @PathVariable(value = "numberOne") numberOne: String?,
             @PathVariable(value = "numberTwo") numberTwo: String?
     ): Operation {
-        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw UnsupportedMathOperationException("Plase set a numeric value")
+        // There's no difference between in throwing UnsupportedMathOperationException or RuntimeException, because they are the same thing
+        // UnsupportedMathOperationException just passes the value to RuntimeException
+        // if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw UnsupportedMathOperationException("Please set a numeric value")
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw RuntimeException("Please set a numeric value")
         return Operation(convertDouble(numberOne) + convertDouble(numberTwo))
     }
-
+    
     private fun convertDouble(strNumber: String?): Double {
         if (strNumber.isNullOrBlank()) return 0.0
         val number = strNumber.replace(",".toRegex(), ".")

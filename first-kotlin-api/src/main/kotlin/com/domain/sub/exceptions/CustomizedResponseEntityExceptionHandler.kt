@@ -2,7 +2,6 @@ package com.domain.sub.exceptions
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import java.lang.*
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestController
@@ -25,6 +24,19 @@ class CustomizedResponseEntityExceptionHandler : ResponseEntityExceptionHandler(
             )
 
         return ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR)
+
+    }
+
+    @ExceptionHandler(java.lang.RuntimeException::class)
+    fun handleRuntimeExceptions(ex: Exception, request: WebRequest):
+            ResponseEntity<ExceptionResponse> {
+        val exceptionResponse = ExceptionResponse(
+                Date(),
+                ex.message,
+                request.getDescription(false)
+        )
+
+        return ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.I_AM_A_TEAPOT)
 
     }
 
