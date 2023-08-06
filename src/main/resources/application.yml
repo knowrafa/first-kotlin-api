@@ -1,12 +1,5 @@
 spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/kotlindb
-    username: postgres
-    password: 123
-  datasource-mysql:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/kotlindb
-    username: mysql_user
-    password: QKk8O^!2!k6iin
+  profiles:
+    active: prod
+
 
