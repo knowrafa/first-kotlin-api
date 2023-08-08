@@ -5,7 +5,7 @@ import com.domain.sub.models.Message
 import com.domain.sub.services.MessageService
 
 
-class MessageControllerImpl(val service: MessageService, service2: MessageController): MessageController {
+class MessageControllerImpl(val service: MessageService): MessageController {
 
     override fun index(): List<Message> {
         return service.findMessages()

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping
 
 @RestController
 interface MessageController{
-    @GetMapping("/messages")
+    // @GetMapping("/messages")
     fun index(): List<Message>
 
     @PostMapping("/messages")
