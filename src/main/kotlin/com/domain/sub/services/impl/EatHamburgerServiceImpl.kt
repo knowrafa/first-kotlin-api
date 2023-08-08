@@ -1,5 +1,6 @@
-package com.domain.sub.services
+package com.domain.sub.services.impl
 
+import com.domain.sub.services.EatService
 import com.domain.sub.models.Hamburger
 
 class EatHamburgerServiceImpl : EatService<Hamburger> {
