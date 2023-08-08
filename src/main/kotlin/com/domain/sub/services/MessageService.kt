@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service
 import org.springframework.jdbc.core.JdbcTemplate
 import java.util.*
 
-@Service
+
 interface MessageService {
     fun findMessages(): List<Message>
 

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.lang.RuntimeException
 
-@RestController
+
 interface OperationController {
     @RequestMapping(value = ["/sum/{numberOne}/{numberTwo}"])
     fun sum(

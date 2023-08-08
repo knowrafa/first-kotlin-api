@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.lang.RuntimeException
 
-
+@RestController
 class EatControllerImpl : EatController {
 
     override fun getFlavor(foodType: Int) {

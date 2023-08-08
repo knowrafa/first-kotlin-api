@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.lang.RuntimeException
 import kotlin.math.sqrt
-
+@RestController
 class OperationControllerImpl : OperationController {
     private val math = SimpleMath()
     override fun sum(

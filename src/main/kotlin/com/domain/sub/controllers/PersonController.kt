@@ -4,7 +4,6 @@ import com.domain.sub.models.Person
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 
-@RestController
 @RequestMapping("/person")
 interface PersonController {
 

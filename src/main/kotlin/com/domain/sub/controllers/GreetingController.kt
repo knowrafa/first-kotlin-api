@@ -6,12 +6,11 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.concurrent.atomic.AtomicLong
 
-@RestController
 interface GreetingController{
 
     @RequestMapping("/greeting")
     fun greeting(
-            @RequestParam(value = "firstName", defaultValue = "first-name", required = true) firstName: String?,
-            @RequestParam(value = "lastName", defaultValue = "second-name" ) lastName: String?
+            @RequestParam(value = "firstName", required = true) firstName: String?,
+            @RequestParam(value = "lastName", defaultValue = "second-name" ) lastName: String?,
     ): Greeting
 }

@@ -4,9 +4,13 @@ import com.domain.sub.controllers.PersonController
 import com.domain.sub.models.Person
 import com.domain.sub.services.PersonService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
-
+@RestController
 class PersonControllerImpl : PersonController {
+    // O Bean é o objeto que a classe representa no RUNTIME. SINGLETON.
+    // Repository (JPA) é uma interface, DIFERENTE.
 
     @Autowired
     private lateinit var service: PersonService
