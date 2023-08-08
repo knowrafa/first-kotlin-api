@@ -1,35 +1,77 @@
 package com.domain.sub.controllers.impl
 
 import com.domain.sub.controllers.OperationController
+import com.domain.sub.converters.NumberConverter
+import com.domain.sub.math.SimpleMath
 import com.domain.sub.models.Operation
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.lang.RuntimeException
+import kotlin.math.sqrt
 
-
-class OperationControllerImpl: OperationController {
-
+class OperationControllerImpl : OperationController {
+    private val math = SimpleMath()
     override fun sum(
-            numberOne: String?,
-            numberTwo: String?
+        numberOne: String?,
+        numberTwo: String?
     ): Operation {
-        // There's no difference between in throwing UnsupportedMathOperationException or RuntimeException, because they are the same thing
-        // UnsupportedMathOperationException just passes the value to RuntimeException
-        // if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw UnsupportedMathOperationException("Please set a numeric value")
-        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) throw RuntimeException("Please set a numeric value")
-        return Operation(convertDouble(numberOne) + convertDouble(numberTwo))
-    }
-    
-    private fun convertDouble(strNumber: String?): Double {
-        if (strNumber.isNullOrBlank()) return 0.0
-        val number = strNumber.replace(",".toRegex(), ".")
-        return if (isNumeric(number)) number.toDouble() else 0.0
+        if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) throw RuntimeException("Please set a numeric value")
+        return Operation(math.sum(NumberConverter.convertDouble(numberOne), NumberConverter.convertDouble(numberTwo)))
     }
 
-    private fun isNumeric(strNumber: String?): Boolean {
-        if (strNumber.isNullOrBlank()) return false
-        val number = strNumber.replace(",".toRegex(), ".")
-        return number.matches("""[-+]?[0-9]*\.?[0-9]+""".toRegex())
+    override fun sub(
+        numberOne: String?,
+        numberTwo: String?
+    ): Operation {
+        if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) throw RuntimeException("Please set a numeric value")
+        return Operation(math.sub(NumberConverter.convertDouble(numberOne), NumberConverter.convertDouble(numberTwo)))
     }
+
+    override fun multiplication(
+        numberOne: String?,
+        numberTwo: String?
+    ): Operation {
+        if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) throw RuntimeException("Please set a numeric value")
+        return Operation(
+            math.multiplication(
+                NumberConverter.convertDouble(numberOne),
+                NumberConverter.convertDouble(numberTwo)
+            )
+        )
+    }
+
+    override fun division(
+        numberOne: String?,
+        numberTwo: String?
+    ): Operation {
+        if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) throw RuntimeException("Please set a numeric value")
+        return Operation(
+            math.division(
+                NumberConverter.convertDouble(numberOne),
+                NumberConverter.convertDouble(numberTwo)
+            )
+        )
+    }
+
+    override fun average(
+        numberOne: String?,
+        numberTwo: String?
+    ): Operation {
+        if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) throw RuntimeException("Please set a numeric value")
+        return Operation(
+            math.average(
+                NumberConverter.convertDouble(numberOne),
+                NumberConverter.convertDouble(numberTwo)
+            )
+        )
+    }
+
+    override fun squareRoot(
+        number: String?
+    ): Operation {
+        if (!NumberConverter.isNumeric(number)) throw RuntimeException("Please set a numeric value")
+        return Operation(math.squareRoot(NumberConverter.convertDouble(number)))
+    }
+
 }

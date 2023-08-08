@@ -19,6 +19,8 @@ class EatControllerImpl : EatController {
         TODO("Not yet implemented")
     }
 
+    //The return type is -> EatService<*> (unsafe way )
+    // But Kotlin understands the inference
     private fun getFoodService(foodType: Int) = when (foodType) {
         1 -> EatPorkAndBeanServiceImpl()
         2 -> EatHamburgerServiceImpl()

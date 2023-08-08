@@ -14,4 +14,33 @@ interface OperationController {
             @PathVariable(value = "numberTwo") numberTwo: String?
     ): Operation
 
+    @RequestMapping(value = ["/sub/{numberOne}/{numberTwo}"])
+    fun sub(
+        @PathVariable(value = "numberOne") numberOne: String?,
+        @PathVariable(value = "numberTwo") numberTwo: String?
+    ): Operation
+
+    @RequestMapping(value = ["/multiplication/{numberOne}/{numberTwo}"])
+    fun multiplication(
+        @PathVariable(value = "numberOne") numberOne: String?,
+        @PathVariable(value = "numberTwo") numberTwo: String?
+    ): Operation
+
+    @RequestMapping(value = ["/division/{numberOne}/{numberTwo}"])
+    fun division(
+        @PathVariable(value = "numberOne") numberOne: String?,
+        @PathVariable(value = "numberTwo") numberTwo: String?
+    ): Operation
+
+    @RequestMapping(value = ["/average/{numberOne}/{numberTwo}"])
+    fun average(
+        @PathVariable(value = "numberOne") numberOne: String?,
+        @PathVariable(value = "numberTwo") numberTwo: String?
+    ): Operation
+
+    @RequestMapping(value = ["/division/{number}"])
+    fun squareRoot(
+        @PathVariable(value = "number") number: String?,
+    ): Operation
+
 }
