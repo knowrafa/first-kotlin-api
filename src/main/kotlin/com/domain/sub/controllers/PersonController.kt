@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/person")
 interface PersonController {
+
     @RequestMapping(
         method = [RequestMethod.GET],
         produces = [MediaType.APPLICATION_JSON_VALUE]
@@ -23,12 +24,11 @@ interface PersonController {
     ): Person
 
     @PostMapping(
-        value = ["/{id}"],
         // method = [RequestMethod.GET], <- Only if using RequestMapping. {Method}Mapping (PostMapping...) is an Annotation that uses RequestMapping
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun createPerson(
-        @PathVariable(value = "id") id: Long,
+    fun create(
+        @RequestBody person: Person,
     ): Person
 
     @PatchMapping(
@@ -36,15 +36,15 @@ interface PersonController {
         // method = [RequestMethod.GET], <- Only if using RequestMapping. PostMapping is an Annotation that uses RequestMapping
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun updatePerson(
+    fun update(
         @PathVariable(value = "id") id: Long,
     ): Person
 
     @DeleteMapping(
         value = ["/{id}"],
-        produces = [MediaType.APPLICATION_JSON_VALUE]
+        produces = [MediaType.APPLICATION_JSON_VALUE],
     )
-    fun deletePerson(
+    fun delete(
         @PathVariable(value = "id") id: Long,
     ): Person
 

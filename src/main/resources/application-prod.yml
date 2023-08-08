@@ -1,12 +1,16 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/kotlindb
+    url: jdbc:postgresql://localhost:5432/kotlindb2
     username: postgres
     password: 123
   datasource-mysql:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/kotlindb
+    url: jdbc:mysql://localhost:3306/kotlindb2
     username: mysql_user
     password: QKk8O^!2!k6iin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false # shows sql in console
 
