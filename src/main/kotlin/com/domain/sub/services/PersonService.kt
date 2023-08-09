@@ -1,17 +1,18 @@
 package com.domain.sub.services
 
+import com.domain.sub.data.vo.v1.PersonVO
 import com.domain.sub.models.Person
 import org.springframework.stereotype.Service
 
-@Service
+
 interface PersonService {
 
-    fun findById(id: Long): Person
+    fun findById(id: Long): PersonVO
 
-    fun findAll(): List<Person>
+    fun findAll(): List<PersonVO>
 
-    fun create(person: Person): Person
-    fun update(person: Person): Person
+    fun create(person: PersonVO): PersonVO
+    fun update(id: Long, person: PersonVO): PersonVO
 
     fun delete(id: Long): Unit
 
