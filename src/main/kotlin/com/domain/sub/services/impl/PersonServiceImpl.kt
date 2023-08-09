@@ -1,8 +1,10 @@
 package com.domain.sub.services.impl
 
 import com.domain.sub.data.vo.v1.PersonVO
+import com.domain.sub.data.vo.v2.PersonVO as PersonVOV2
 import com.domain.sub.exceptions.ResourceNotFoundException
 import com.domain.sub.mapper.DozerMapper
+import com.domain.sub.mapper.custom.PersonMapper
 import com.domain.sub.models.Person
 
 import com.domain.sub.repository.PersonRepository
@@ -14,7 +16,7 @@ import java.util.logging.Logger
 
 // Basically, all of @Component (Service, Respository and more) can be used in lateinit or as class constructor
 @Service
-class PersonServiceImpl(val repository: PersonRepository) : PersonService {
+class PersonServiceImpl(val repository: PersonRepository, val mapper: PersonMapper,) : PersonService {
 
     //@Autowired
     //private lateinit var repository: PersonRepository
@@ -46,8 +48,14 @@ class PersonServiceImpl(val repository: PersonRepository) : PersonService {
 
     override fun create(person: PersonVO): PersonVO {
         logger.info("Creating one person named ${person.firstName + person.lastName}")
+        val entity: Person = mapper.mapVOToEntity(person)
+        return mapper.mapEntityToVO(repository.save(entity))
+    }
+
+    override fun createV2(person: PersonVOV2): PersonVOV2 {
+        logger.info("Creating one person named ${person.firstName + person.lastName}")
         val entity: Person = DozerMapper.parseObject(person, Person::class.java)
-        return DozerMapper.parseObject(repository.save(entity), PersonVO::class.java)
+        return DozerMapper.parseObject(repository.save(entity), PersonVOV2::class.java)
     }
 
     override fun update(id: Long, person: PersonVO): PersonVO {

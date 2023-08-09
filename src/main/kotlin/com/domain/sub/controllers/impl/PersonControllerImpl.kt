@@ -2,6 +2,7 @@ package com.domain.sub.controllers.impl
 
 import com.domain.sub.controllers.PersonController
 import com.domain.sub.data.vo.v1.PersonVO
+import com.domain.sub.data.vo.v2.PersonVO as PersonVOV2
 import com.domain.sub.models.Person
 import com.domain.sub.services.PersonService
 import org.springframework.beans.factory.annotation.Autowired
@@ -29,6 +30,10 @@ class PersonControllerImpl(val service: PersonService) : PersonController {
 
     override fun create(person: PersonVO): PersonVO {
         return service.create(person)
+    }
+
+    override fun createV2(person: PersonVOV2): PersonVOV2 {
+        return service.createV2(person)
     }
 
     override fun update(id: Long, person: PersonVO): PersonVO {

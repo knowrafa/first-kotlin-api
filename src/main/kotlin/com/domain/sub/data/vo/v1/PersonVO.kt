@@ -1,7 +1,6 @@
 package com.domain.sub.data.vo.v1
 
-import jakarta.persistence.Column
-import java.util.*
+
 
 // javax persistence -> jakarta persistence
 

@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/kotlindb
+    url: jdbc:postgresql://localhost:5432/kotlindb2
     username: postgres
     password: 123
   datasource-mysql:

@@ -1,7 +1,7 @@
 package com.domain.sub.controllers
 
 import com.domain.sub.data.vo.v1.PersonVO
-import com.domain.sub.models.Person
+import com.domain.sub.data.vo.v2.PersonVO as PersonVOV2
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -25,12 +25,22 @@ interface PersonController {
     ): PersonVO
 
     @PostMapping(
+        value = ["/v1"],
         // method = [RequestMethod.GET], <- Only if using RequestMapping. {Method}Mapping (PostMapping...) is an Annotation that uses RequestMapping
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
     fun create(
         @RequestBody person: PersonVO,
     ): PersonVO
+
+    @PostMapping(
+        value = ["/v2"],
+        // method = [RequestMethod.GET], <- Only if using RequestMapping. {Method}Mapping (PostMapping...) is an Annotation that uses RequestMapping
+        consumes = [MediaType.APPLICATION_JSON_VALUE]
+    )
+    fun createV2(
+        @RequestBody person: PersonVOV2,
+    ): PersonVOV2
 
     @PatchMapping(
         value = ["/{id}"],
