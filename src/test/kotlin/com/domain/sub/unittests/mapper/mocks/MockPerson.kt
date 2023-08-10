@@ -1,9 +1,8 @@
 package com.domain.sub.unittests.mapper.mocks
 
-import java.util.ArrayList
-
 import com.domain.sub.data.vo.v1.PersonVO
 import com.domain.sub.models.Person
+import java.util.*
 
 class MockPerson {
     fun mockEntity(): Person {
@@ -35,7 +34,7 @@ class MockPerson {
         person.address = "Address Test$number"
         person.firstName = "First Name Test$number"
         person.gender = if (number % 2 == 0) "Male" else "Female"
-        person.id = number.toLong()
+        person.id = UUID.randomUUID()
         person.lastName = "Last Name Test$number"
         return person
     }
@@ -45,7 +44,7 @@ class MockPerson {
         person.address = "Address Test$number"
         person.firstName = "First Name Test$number"
         person.gender = if (number % 2 == 0) "Male" else "Female"
-        person.id = number.toLong()
+        person.id = UUID.randomUUID()
         person.lastName = "Last Name Test$number"
         return person
     }
