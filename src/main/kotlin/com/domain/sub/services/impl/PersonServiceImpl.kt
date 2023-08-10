@@ -30,7 +30,14 @@ class PersonServiceImpl(val repository: PersonRepository) : PersonService {
         logger.info("Finding all of the people!")
         val persons = repository.findAll()
         // Assim o Dozer consegue converter a listagem em VO's
-        return DozerMapper.parseListObjects(persons, PersonVO::class.java)
+        val vos = DozerMapper.parseListObjects(persons, PersonVO::class.java)
+
+        for (person in vos) {
+            val withSelfRel = linkTo(PersonController::class.java).slash(person.pk).withSelfRel()
+            person.add(withSelfRel)
+        }
+
+        return vos
     }
 
     override fun findById(id: UUID): PersonVO {
@@ -52,7 +59,12 @@ class PersonServiceImpl(val repository: PersonRepository) : PersonService {
     override fun create(person: PersonVO): PersonVO {
         logger.info("Creating one person named ${person.firstName + person.lastName}")
         val entity: Person = DozerMapper.parseObject(person, Person::class.java)
-        return DozerMapper.parseObject(repository.save(entity), PersonVO::class.java)
+        val personVO: PersonVO = DozerMapper.parseObject(repository.save(entity), PersonVO::class.java)
+
+        val withSelfRel = linkTo(PersonController::class.java).slash(personVO.pk).withSelfRel()
+        personVO.add(withSelfRel)
+        return personVO
+
     }
 
     override fun update(id: UUID, person: PersonVO): PersonVO {
@@ -63,7 +75,11 @@ class PersonServiceImpl(val repository: PersonRepository) : PersonService {
         entity.firstName = person.firstName
         entity.lastName = person.lastName
 
-        return DozerMapper.parseObject(repository.save(entity), PersonVO::class.java)
+        val personVO: PersonVO = DozerMapper.parseObject(repository.save(entity), PersonVO::class.java)
+        val withSelfRel = linkTo(PersonController::class.java).slash(personVO.pk).withSelfRel()
+        personVO.add(withSelfRel)
+        return personVO
+
     }
 
     override fun delete(id: UUID) {
