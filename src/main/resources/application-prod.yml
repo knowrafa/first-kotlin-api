@@ -1,7 +1,9 @@
 spring:
-  # flyway:
-    # locations: classpath:db/migration
-    # Checksum error when .sql is modified, because checksum is different
+  flyway:
+    enabled: false
+    # locations: classpath:db/migration <-- Default location
+    # Checksum error when .sql is modified, because checksum is different.
+    # I need to be careful with migrations
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/kotlindb
@@ -14,7 +16,7 @@ spring:
     password: QKk8O^!2!k6iin
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true # shows sql in console
     properties:
       hibernate:
