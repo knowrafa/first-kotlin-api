@@ -1,5 +1,6 @@
 package com.domain.sub.services.impl
 
+import com.domain.sub.controllers.PersonController
 import com.domain.sub.data.vo.v1.PersonVO
 import com.domain.sub.exceptions.ResourceNotFoundException
 import com.domain.sub.mapper.DozerMapper
@@ -7,7 +8,7 @@ import com.domain.sub.models.Person
 
 import com.domain.sub.repository.PersonRepository
 import com.domain.sub.services.PersonService
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo
 import org.springframework.stereotype.Service
 import java.util.*
 import java.util.concurrent.atomic.AtomicLong
@@ -38,10 +39,13 @@ class PersonServiceImpl(val repository: PersonRepository) : PersonService {
          * function and throws an error in case result is null
          */
         logger.info("Finding one person with id $id")
-        var person = repository.findById(id)
+        val person = repository.findById(id)
             .orElseThrow { ResourceNotFoundException("No records found for this id") }
 
-        return DozerMapper.parseObject(person, PersonVO::class.java)
+        val personVO: PersonVO = DozerMapper.parseObject(person, PersonVO::class.java)
+        val withSelfRel = linkTo(PersonController::class.java).slash(personVO.pk).withSelfRel()
+        personVO.add(withSelfRel)
+        return personVO
     }
 
 
@@ -52,7 +56,7 @@ class PersonServiceImpl(val repository: PersonRepository) : PersonService {
     }
 
     override fun update(id: UUID, person: PersonVO): PersonVO {
-        logger.info("Updating one person with ${person.id}")
+        logger.info("Updating one person with ${person.pk}")
         val entity = repository.findById(id)
             .orElseThrow { ResourceNotFoundException("No records found for this id") }
 

@@ -23,7 +23,7 @@ class WebConfig : WebMvcConfigurer {
             .mediaType("json", MediaType.APPLICATION_JSON)
             .mediaType("xml", MediaType.APPLICATION_XML)
 
-         */
+         */ 
         // mediaType does not accept string as parameter, only MediaType class
 
         configurer.favorParameter(false)
