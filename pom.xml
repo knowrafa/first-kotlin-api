@@ -120,6 +120,16 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-parent</artifactId>
+                <configuration>
+                    <url>jdbc:postgresql://localhost:5432/kotlindb</url>
+                    <username>postgres</username>
+                    <username>123</username>
+                </configuration>
+                <!-- mvn flyway:migrate to apply all migrations from resources/db/migration-->
+            </plugin>
         </plugins>
     </build>
     <repositories>
