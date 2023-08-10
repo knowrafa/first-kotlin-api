@@ -14,6 +14,7 @@ import java.util.*
     "lastName",
     "gender"
 )
+
 data class PersonVO(
 
     var id: UUID? = null,

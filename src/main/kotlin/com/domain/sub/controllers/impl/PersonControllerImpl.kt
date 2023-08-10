@@ -7,6 +7,7 @@ import com.domain.sub.services.PersonService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
+import java.util.*
 
 @RestController
 class PersonControllerImpl(val service: PersonService) : PersonController {
@@ -16,13 +17,12 @@ class PersonControllerImpl(val service: PersonService) : PersonController {
     //@Autowired
 
 
-
     override fun findAll(): List<PersonVO> {
         return service.findAll()
     }
 
     override fun findById(
-        id: Long,
+        id: UUID,
     ): PersonVO {
         return service.findById(id)
     }
@@ -31,11 +31,11 @@ class PersonControllerImpl(val service: PersonService) : PersonController {
         return service.create(person)
     }
 
-    override fun update(id: Long, person: PersonVO): PersonVO {
+    override fun update(id: UUID, person: PersonVO): PersonVO {
         return service.update(id, person)
     }
 
-    override fun delete(id: Long): ResponseEntity<*> {
+    override fun delete(id: UUID): ResponseEntity<*> {
         service.delete(id)
         return ResponseEntity.noContent().build<Any>()
     }

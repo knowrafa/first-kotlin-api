@@ -91,6 +91,16 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
+        <!-- Always verify if pom.xml is ok. XML formatting was not working because of this-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -130,6 +140,7 @@
                 </configuration>
                 <!-- mvn flyway:migrate to apply all migrations from resources/db/migration-->
             </plugin>
+
         </plugins>
     </build>
     <repositories>

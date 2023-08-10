@@ -9,6 +9,7 @@ import com.domain.sub.repository.PersonRepository
 import com.domain.sub.services.PersonService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 import java.util.concurrent.atomic.AtomicLong
 import java.util.logging.Logger
 
@@ -31,7 +32,7 @@ class PersonServiceImpl(val repository: PersonRepository) : PersonService {
         return DozerMapper.parseListObjects(persons, PersonVO::class.java)
     }
 
-    override fun findById(id: Long): PersonVO {
+    override fun findById(id: UUID): PersonVO {
         /**
          * Uses findById (defaults from repository)
          * function and throws an error in case result is null
@@ -50,7 +51,7 @@ class PersonServiceImpl(val repository: PersonRepository) : PersonService {
         return DozerMapper.parseObject(repository.save(entity), PersonVO::class.java)
     }
 
-    override fun update(id: Long, person: PersonVO): PersonVO {
+    override fun update(id: UUID, person: PersonVO): PersonVO {
         logger.info("Updating one person with ${person.id}")
         val entity = repository.findById(id)
             .orElseThrow { ResourceNotFoundException("No records found for this id") }
@@ -61,7 +62,7 @@ class PersonServiceImpl(val repository: PersonRepository) : PersonService {
         return DozerMapper.parseObject(repository.save(entity), PersonVO::class.java)
     }
 
-    override fun delete(id: Long) {
+    override fun delete(id: UUID) {
         val entity = repository.findById(id)
             .orElseThrow { ResourceNotFoundException("No records found for this id") }
         repository.delete(entity)
