@@ -122,7 +122,7 @@
             </plugin>
             <plugin>
                 <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-parent</artifactId>
+                <artifactId>flyway-core</artifactId>
                 <configuration>
                     <url>jdbc:postgresql://localhost:5432/kotlindb</url>
                     <username>postgres</username>
