@@ -72,7 +72,11 @@
             <artifactId>dozer-core</artifactId>
             <version>${dozer.version}</version>
         </dependency>
-<!--        Por causa da versão do Dozer. Testar com o sistema funcionando normalmente-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--        Por causa da versão do Dozer. Testar com o sistema funcionando normalmente-->
 <!--        <dependency>-->
 <!--            <groupId>jakarta.xml.bind</groupId>-->
 <!--            <artifactId>jakarta.xml.bind-api</artifactId>-->
