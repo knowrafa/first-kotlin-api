@@ -23,6 +23,13 @@ spring:
         jdbc:
           time_zone: UTC
   data:
+    # https://www.mongodb.com/developer/languages/kotlin/spring-boot3-kotlin-mongodb/
+    # Never forget do ADD your IP to mongo access rules
     mongodb:
       uri: mongodb+srv://<user<>:<password>@clusterX.kysr260r.mongodb.net/?retryWrites=true&w=majority
+
+  management:
+    health:
+      mongo:
+        enabled: false
 
