@@ -22,3 +22,7 @@ spring:
       hibernate:
         jdbc:
           time_zone: UTC
+  data:
+    mongodb:
+      uri: mongodb+srv://<user<>:<password>@clusterX.kysr260r.mongodb.net/?retryWrites=true&w=majority
+
