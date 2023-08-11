@@ -74,11 +74,13 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <!--https://www.mongodb.com/docs/drivers/kotlin/coroutine/current/quick-reference/ -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-kotlin-coroutine</artifactId>
+            <version>4.10.1</version>
         </dependency>
 
         <dependency>
