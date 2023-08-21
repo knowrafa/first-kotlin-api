@@ -14,7 +14,7 @@
     <name>first-kotlin-api</name>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <java.version>20</java.version>
+        <java.version>17</java.version>
         <kotlin.version>1.9.0</kotlin.version>
         <!--  A versão 6.5.2 não funciona pois usa uma outra lib      -->
         <dozer.version>6.4.1</dozer.version>
