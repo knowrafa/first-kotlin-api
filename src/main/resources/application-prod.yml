@@ -6,7 +6,7 @@ spring:
     # I need to be careful with migrations
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/kotlindb
+    url: jdbc:postgresql://postgres_db:5432/kotlindb
     username: postgres
     password: 123
   datasource-mysql:
